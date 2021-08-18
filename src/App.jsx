@@ -142,7 +142,7 @@ export default class App extends React.Component {
                 htmlFor={labelFor}
                 title={tooltip}
                 id={labelFor + '-label'} 
-                key={labelFor + "-label"}>{labelText + ':'} 
+                key={labelFor + "-label"}>{labelText + ':'}&nbsp;
             </label>
     }
 
