@@ -1,0 +1,14 @@
+{
+    "classes": {
+        "S": "bg-start",
+        "F": "bg-frozen",
+        "H": "bg-hole",
+        "G": "bg-goal"
+    },
+    "titles": {
+        "S": "Start",
+        "F": "Frozen",
+        "H": "Hole",
+        "G": "Goal"
+    }
+}

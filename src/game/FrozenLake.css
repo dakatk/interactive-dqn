@@ -1,0 +1,30 @@
+#frozen-lake-grid {
+    border: 4px solid black;
+    padding: 0;
+    display: inline-block;
+}
+
+.grid-item {
+    text-align: center;
+    display: inline-block;
+    border: 4px solid black;
+    font-size: 100px;
+    width: 1.1em;
+    height: 1.2em;
+}
+
+.bg-start {
+    background-color: rgb(73, 176, 245);
+}
+
+.bg-frozen {
+    background-color: rgb(164, 219, 255);
+}
+
+.bg-hole {
+    background-color: rgb(52, 82, 110);
+}
+
+.bg-goal {
+    background-color: rgb(105, 221, 182);
+}
