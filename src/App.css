@@ -14,6 +14,10 @@
     width: 3em;
 }
 
+#step-delay-input {
+    width: 4.4em;
+}
+
 #epsilon, #epsilonMax, #epsilonMin {
     width: 3.8em;
 }

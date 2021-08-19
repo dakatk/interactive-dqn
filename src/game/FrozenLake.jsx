@@ -5,8 +5,9 @@ import './FrozenLake.css';
 import { Action, Transition } from './util/Step.js'
 import * as tf from '@tensorflow/tfjs';
 import styleData from './models/StyleData.json';
+import AsyncComponent from '../util/AsyncComponent';
 
-export default class FrozenLake extends React.Component {
+export default class FrozenLake extends AsyncComponent {
     board = Object.freeze([
         'S', 'F', 'F', 'F',
         'F', 'H', 'F', 'H',
@@ -24,8 +25,8 @@ export default class FrozenLake extends React.Component {
     componentDidMount() {}
     componentWillUnmount() {}
 
-    reset() {
-        this.setState({ location: 0 });
+    async reset() {
+        await this.setStateAsync({ location: 0 });
         this.prevAction = Action.RIGHT
     }
 
@@ -83,7 +84,7 @@ export default class FrozenLake extends React.Component {
             default:
                 break;
         }
-        await this.setState({ location: stateY * 4 + stateX });
+        await this.setStateAsync({ location: stateY * 4 + stateX });
         this.prevAction = action;
 
         return new Transition(action, prevState, this.reward(), this.done(), this.stateAsTensor(), allowedActions);

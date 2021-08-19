@@ -5,8 +5,9 @@ import Dqn from './game/util/rl/Dqn';
 import controls from './models/Controls.json';
 import params from './models/Params.json';
 import sleep from './util/Sleep';
+import AsyncComponent from './util/AsyncComponent';
 
-export default class App extends React.Component {
+export default class App extends AsyncComponent {
     constructor(props) {
         super(props);
 
@@ -20,10 +21,14 @@ export default class App extends React.Component {
             updateTarget: false,
             episodes: 1000,
             batchSize: 32,
-            running: false
+            running: false,
+            currentStep: 0,
+            currentEpisode: 0,
+            stepDelay: 500
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleModeSelectChange = this.handleModeSelectChange.bind(this);
         this.handlePlayButtonPress = this.handlePlayButtonPress.bind(this);
         this.handleResetButtonPress = this.handleResetButtonPress.bind(this);
     }
@@ -33,12 +38,30 @@ export default class App extends React.Component {
         this.dqn = new Dqn(params.bufferSize, params.gamma);
     }
 
-    handleInputChange(e) {
+    async reset(resetNetwork) {
+        await this.setStateAsync({ 
+            running: false, 
+            currentStep: 0, 
+            currentEpisode: 0 
+        });
+        await this.game.reset();
+        
+        if (resetNetwork) {
+            this.dqn.reset();
+        }
+    }
+
+    async handleInputChange(e) {
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
 
-        this.setState({ [name]: value });
+        await this.setStateAsync({ [name]: value });
+    }
+
+    async handleModeSelectChange(e) {
+        await this.handleInputChange(e);
+        await this.reset(false);
     }
 
     async handlePlayButtonPress() {
@@ -50,7 +73,7 @@ export default class App extends React.Component {
         const epsilonMax = this.state.epsilonMax;
         const epsilonMin = this.state.epsilonMin;
 
-        await this.setState({ running: true });
+        await this.setStateAsync({ running: true });
 
         switch (this.state.mode) {
             case 'step':
@@ -69,7 +92,11 @@ export default class App extends React.Component {
             default:
                 break;
         }
-        await this.setState({ running: false });
+        await this.setStateAsync({ running: false });
+    }
+
+    async handleResetButtonPress() {
+        await this.reset(true);
     }
 
     async fullyTrain(episodes, maxSteps, batchSize, epsilonMax, epsilonMin) {
@@ -77,6 +104,7 @@ export default class App extends React.Component {
         let epsilon = epsilonMax;
 
         for (let episode = 0; episode < episodes && this.state.running; episode ++) {
+            await this.setStateAsync({ currentEpisode: episode + 1 });
             await this.singleEpisode(maxSteps, epsilon, batchSize);
 
             if (epsilon > epsilonMin) {
@@ -86,17 +114,18 @@ export default class App extends React.Component {
     }
 
     async singleEpisode(maxSteps, epsilon, batchSize) {
-        for (let i = 0; i < maxSteps && this.state.running; i ++) {
+        for (let step = 0; step < maxSteps && this.state.running; step ++) {
             const transition = await this.dqn.step(this.game, epsilon);
 
-            await sleep(1000);
+            await this.setStateAsync({ currentStep: step + 1 });
+            await sleep(this.state.stepDelay);
             this.forceUpdate();
 
             if (transition.done) {
                 break;
             }
         }
-        this.game.reset();
+        await this.game.reset();
         await this.dqn.trainModel(batchSize);
         this.dqn.updateTargetModel();
     }
@@ -105,18 +134,13 @@ export default class App extends React.Component {
         const step = await this.dqn.step(this.game, epsilon);
 
         if (step.done) {
-            this.game.reset();
+            await this.game.reset();
             await this.dqn.trainModel(batchSize);
         }
 
         if (updateTarget) {
             this.dqn.updateTargetModel();
         }
-    }
-
-    handleResetButtonPress() {
-        this.game.reset();
-        this.dqn.reset();
     }
 
     createControlsForMode() {
@@ -163,16 +187,25 @@ export default class App extends React.Component {
         return React.createElement('input', elementProps);
     }
 
+    showCurrentStep() {
+        const mode = this.state.mode;
+        return mode === 'episode' || mode === 'train';
+    }
+
+    showCurrentEpisode() {
+        return this.state.mode === 'train';
+    }
+
     render() {
         return <div>
             <div id="controls-container">
                 <div id="controls-box">
                     <div id="static-controls">
                         <select className="control" id="mode-select" name="mode" title="Mode select" 
-                            onChange={this.handleInputChange} defaultValue="step">
+                            onChange={this.handleModeSelectChange} defaultValue="step">
                             <option value="step">Single Step</option>
                             <option value="episode">Single Episode</option>
-                            <option value="train">Full Training</option>
+                            <option value="train">Multiple Episodes</option>
                         </select>
                         <button 
                             className="control" 
@@ -188,6 +221,18 @@ export default class App extends React.Component {
                             disabled={this.state.running}
                             onClick={this.handleResetButtonPress}>↺
                         </button>
+                        <input 
+                            className="control"
+                            name="stepDelay"
+                            id="step-delay-input"
+                            title="Delay Between Steps (ms)"
+                            onChange={this.handleInputChange}
+                            value={this.state.stepDelay}
+                            type="number"
+                            max="5000"
+                            min="100"
+                            step="100">
+                        </input>
                     </div>
                     {this.createControlsForMode()}
                 </div>
