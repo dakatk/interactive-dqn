@@ -1,11 +1,11 @@
 /*eslint eqeqeq: "off"*/
 
-import React from 'react';
-import './FrozenLake.css';
-import { Action, Transition } from './util/Step.js'
 import * as tf from '@tensorflow/tfjs';
-import styleData from './models/StyleData.json';
-import AsyncComponent from '../util/AsyncComponent';
+import React from 'react';
+import { Action, Transition } from '../../util/Step';
+import AsyncComponent from '../../util/AsyncComponent';
+import Cell from '../cell/Cell';
+import './FrozenLake.css';
 
 export default class FrozenLake extends AsyncComponent {
     board = Object.freeze([
@@ -33,6 +33,7 @@ export default class FrozenLake extends AsyncComponent {
     allowedActions() {
         let opposite = this.prevAction.opposite();
         let location = this.state.location;
+        
         let stateX = location % 4;
         let stateY = Math.floor(location / 4);
 
@@ -126,19 +127,10 @@ export default class FrozenLake extends AsyncComponent {
     render() {
         let cells = [];
         for (const i in this.board) {
-            const cell = this.board[i];
-            const className = styleData.classes[cell] + " grid-item";
-            const title = styleData.titles[cell];
-
-            let content;
-            if (i == this.state.location) {
-                content = '웃';
-            }
-            else {
-                content = cell;
-            }
-
-            cells.push(<div className={className} title={title} key={i}>{content}</div>);
+            const type = this.board[i];
+            const populated = i == this.state.location;
+            
+            cells.push(<Cell type={type} populated={populated} key={i} />);
             if ((parseInt(i) + 1) % 4 === 0) {
                 cells.push(<br key={i + '-br'} />)
             }

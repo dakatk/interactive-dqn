@@ -1,3 +1,12 @@
+#controls-box {
+    display: inline-block;
+}
+
+#static-controls {
+    display: block;
+    margin-bottom: 0.9em;
+}
+
 #mode-select {
     display: inline-block;
 }
@@ -14,8 +23,8 @@
     width: 3em;
 }
 
-#step-delay-input {
-    width: 4.4em;
+#stepDelay {
+    width: 4.8em;
 }
 
 #epsilon, #epsilonMax, #epsilonMin {
@@ -50,23 +59,4 @@ label {
     margin-left: 0.5em;
     margin-top: 0.5em;
     margin-right: 0.5em;
-}
-
-#controls-container {
-    margin-top: 1%;
-    text-align: center;
-}
-
-#controls-box {
-    display: inline-block;
-}
-
-#static-controls {
-    display: block;
-    margin-bottom: 0.9em;
-}
-
-#game-container {
-    margin-top: 3%;
-    text-align: center;
 }

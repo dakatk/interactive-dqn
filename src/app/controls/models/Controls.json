@@ -2,7 +2,6 @@
     "step": [
         {
             "label": "Epsilon",
-            "tooltip": "",
             "props": {
                 "name": "epsilon",
                 "id": "epsilon",
@@ -10,21 +9,12 @@
                 "max": 1.0,
                 "min": 0.0,
                 "step": 0.1,
-                "placeholder": 0.0
-            }
-        },
-        {
-            "label": "Update",
-            "tooltip": "",
-            "props": {
-                "name": "updateTarget",
-                "id": "updateTarget",
-                "type": "checkbox"
+                "placeholder": 0.0,
+                "title": "Probability of random action vs best known action"
             }
         },
         {
             "label": "Batch Size",
-            "tooltip": "",
             "props": {
                 "name": "batchSize",
                 "id": "batchSize",
@@ -32,14 +22,23 @@
                 "max": 200,
                 "min": 10,
                 "step": 2,
-                "placeholder": 10
+                "placeholder": 10,
+                "title": "Amount of data sampled from replay buffer when training"
+            }
+        },
+        {
+            "label": "Update",
+            "props": {
+                "name": "updateTarget",
+                "id": "updateTarget",
+                "type": "checkbox",
+                "title": "Choose to update target network on step"
             }
         }
     ],
     "episode": [
         {
             "label": "Max Steps",
-            "tooltip": "",
             "props": {
                 "name": "maxSteps",
                 "id": "maxSteps",
@@ -47,12 +46,12 @@
                 "max": 100,
                 "min": 5,
                 "step": 5,
-                "placeholder": 5
+                "placeholder": 5,
+                "title": "Maximum number of steps per episode before resetting"
             }
         },
         {
             "label": "Epsilon",
-            "tooltip": "",
             "props": {
                 "name": "epsilon",
                 "id": "epsilon",
@@ -60,12 +59,12 @@
                 "max": 1.0,
                 "min": 0.0,
                 "step": 0.1,
-                "placeholder": 0.0
+                "placeholder": 0.0,
+                "title": "Probability of random action vs best known action"
             }
         },
         {
             "label": "Batch Size",
-            "tooltip": "",
             "props": {
                 "name": "batchSize",
                 "id": "batchSize",
@@ -73,14 +72,14 @@
                 "max": 200,
                 "min": 10,
                 "step": 2,
-                "placeholder": 10
+                "placeholder": 10,
+                "title": "Amount of data sampled from replay buffer when training"
             }
         }
     ],
     "train": [
         {
             "label": "Episodes",
-            "tooltip": "",
             "props": {
                 "name": "episodes",
                 "id": "episodes",
@@ -88,12 +87,12 @@
                 "max": 50000,
                 "min": 100,
                 "step": 100,
-                "placeholder": 100
+                "placeholder": 100,
+                "title": "Number of epsiodes in the training cycle"
             }
         },
         {
             "label": "Max Steps",
-            "tooltip": "",
             "props": {
                 "name": "maxSteps",
                 "id": "maxSteps",
@@ -101,12 +100,12 @@
                 "max": 100,
                 "min": 5,
                 "step": 5,
-                "placeholder": 5
+                "placeholder": 5,
+                "title": "Maximum number of steps per episode before resetting"
             }
         },
         {
             "label": "Batch Size",
-            "tooltip": "",
             "props": {
                 "name": "batchSize",
                 "id": "batchSize",
@@ -114,12 +113,12 @@
                 "max": 200,
                 "min": 10,
                 "step": 2,
-                "placeholder": 10
+                "placeholder": 10,
+                "title": "Amount of data sampled from replay buffer when training"
             }
         },
         {
             "label": "Epsilon Max",
-            "tooltip": "",
             "props": {
                 "name": "epsilonMax",
                 "id": "epsilonMax",
@@ -127,12 +126,12 @@
                 "max": 1.0,
                 "min": 0.0,
                 "step": 0.1,
-                "placeholder": 0.0
+                "placeholder": 0.0,
+                "title": "Starting epsilon value (decays from)"
             }
         },
         {
             "label": "Epsilon Min",
-            "tooltip": "",
             "props": {
                 "name": "epsilonMin",
                 "id": "epsilonMin",
@@ -140,7 +139,8 @@
                 "max": 1.0,
                 "min": 0.0,
                 "step": 0.1,
-                "placeholder": 0.0
+                "placeholder": 0.0,
+                "title": "Ending epsilon value (decays to)"
             }
         }
     ]

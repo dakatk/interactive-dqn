@@ -1,9 +1,3 @@
-#frozen-lake-grid {
-    border: 4px solid black;
-    padding: 0;
-    display: inline-block;
-}
-
 .grid-item {
     text-align: center;
     display: inline-block;
