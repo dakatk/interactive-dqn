@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from './app/App';
-import FrozenLake from './app/frozen-lake/FrozenLake';
 import Game from './app/game/Game';
+import FrozenLake from './app/game/frozen-lake/FrozenLake';
 import ParamsModel from './models/Params.json';
 import './index.css';
 
@@ -16,7 +16,8 @@ class Index extends React.Component {
     render() {
         return <BrowserRouter>
             <Routes>
-                <Route path="/" element={<App />} />
+                <Route exact path="/" element={<App />} />
+                <Route exact path="/interactive-dqn" element={<App />} />
                 <Route exact path="/frozen-lake" element={
                     <Game
                         params={ParamsModel.frozenLake}

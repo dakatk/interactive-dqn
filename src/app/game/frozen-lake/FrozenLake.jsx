@@ -1,7 +1,7 @@
 import * as tf from '@tensorflow/tfjs';
 import React from 'react';
-import { Action, Transition } from '../../util/Step';
-import AsyncComponent from '../../util/AsyncComponent';
+import { Action, Transition } from '../../../util/Step';
+import AsyncComponent from '../../../util/AsyncComponent';
 import Board from './board/Board';
 import './FrozenLake.css';
 
