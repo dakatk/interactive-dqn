@@ -4,20 +4,24 @@ import * as tf from '@tensorflow/tfjs';
 import { Action } from '../Step';
 
 export default class Dqn {
-    constructor(bufferSize, gamma) {
+    constructor(bufferSize, gamma, layers) {
         this.bufferSize = bufferSize;
         this.gamma = gamma;
+        this.layers = layers;
         this.reset();
     }
 
     reset() {
         this.mainModel = tf.sequential();
-        this.mainModel.add(tf.layers.dense({units: 4, inputShape: 16, activation: 'relu'}));
+        for (const layer of this.layers) {
+            this.mainModel.add(tf.layers.dense(layer));
+        }
         this.mainModel.compile({loss: 'meanSquaredError', optimizer: 'adam'});
 
         this.targetModel = tf.sequential();
-        this.targetModel.add(tf.layers.dense({units: 4, inputShape: 16, activation: 'relu'}));
-
+        for (const layer of this.layers) {
+            this.targetModel.add(tf.layers.dense(layer));
+        }
         this.updateTargetModel();
         this.replayBuffer = [];
     }

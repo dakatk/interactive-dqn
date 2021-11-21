@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default class AsyncComponent extends React.Component {
     setStateAsync(newState) {

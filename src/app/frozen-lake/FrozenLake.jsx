@@ -1,10 +1,8 @@
-/*eslint eqeqeq: "off"*/
-
 import * as tf from '@tensorflow/tfjs';
 import React from 'react';
 import { Action, Transition } from '../../util/Step';
 import AsyncComponent from '../../util/AsyncComponent';
-import Cell from '../cell/Cell';
+import Board from './board/Board';
 import './FrozenLake.css';
 
 export default class FrozenLake extends AsyncComponent {
@@ -125,18 +123,6 @@ export default class FrozenLake extends AsyncComponent {
     }
 
     render() {
-        let cells = [];
-        for (const i in this.board) {
-            const type = this.board[i];
-            const populated = i == this.state.location;
-            
-            cells.push(<Cell type={type} populated={populated} key={i} />);
-            if ((parseInt(i) + 1) % 4 === 0) {
-                cells.push(<br key={i + '-br'} />)
-            }
-        }
-        return <div id="frozen-lake-grid">
-            {cells}
-        </div>
+        return <Board boardData={this.board} location={this.state.location} rowSize={4} />
     }
 }

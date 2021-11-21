@@ -1,9 +1,9 @@
 {
     "classes": {
-        "S": "bg-start",
-        "F": "bg-frozen",
-        "H": "bg-hole",
-        "G": "bg-goal"
+        "S": "cell-bg-start",
+        "F": "cell-bg-frozen",
+        "H": "cell-bg-hole",
+        "G": "cell-bg-goal"
     },
     "titles": {
         "S": "Start",

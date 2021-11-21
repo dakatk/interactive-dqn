@@ -75,8 +75,8 @@ export default class Controls extends AsyncComponent {
                 className="control" 
                 htmlFor={labelFor}
                 title={tooltip}
-                id={labelFor + '-label'} 
-                key={labelFor + "-label"}>{labelText + ':'}&nbsp;
+                id={`${labelFor}-label`} 
+                key={`${labelFor}-label`}>{`${labelText}:`}&nbsp;
             </label>
     }
 

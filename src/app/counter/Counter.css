@@ -1,0 +1,12 @@
+#counter-counts {
+    display: inline-block;
+}
+
+#counter-episode {
+    margin-left: 1.1em;
+    float: right;
+}
+
+#counter-step {
+    float: left;
+}

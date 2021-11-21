@@ -1,12 +1,4 @@
-#controls-container {
-    margin-top: 1%;
-    text-align: center;
+#app-nav {
+    border-bottom: solid 1px;
+    padding-bottom: 1rem;
 }
-
-#game-container {
-    margin-top: 3%;
-    text-align: center;
-}
-
-/* #count-container {
-} */
