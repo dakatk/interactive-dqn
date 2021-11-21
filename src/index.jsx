@@ -19,7 +19,7 @@ class Index extends React.Component {
                 <Route path="/" element={<App />} />
                 <Route exact path="/frozen-lake" element={
                     <Game
-                        params={ParamsModel.frozenlake}
+                        params={ParamsModel.frozenLake}
                         component={<FrozenLake ref={this.frozenLakeRef}/>}
                     />}
                 />

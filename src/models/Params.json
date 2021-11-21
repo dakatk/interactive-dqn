@@ -1,0 +1,9 @@
+{
+    "frozenLake": {
+        "batchSize": 1500,
+        "gamma": 0.9,
+        "layers": [
+            {"units": 4, "inputShape": 16, "activation": "relu"}
+        ]
+    }
+}
