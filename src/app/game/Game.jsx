@@ -1,4 +1,4 @@
-import AsyncComponent from '../../util/AsyncComponent';
+import AsyncComponent from '../../util/interface/AsyncComponent';
 import Controls from '../controls/Controls';
 import Counter from '../counter/Counter';
 import Trainer from '../../util/rl/Trainer';

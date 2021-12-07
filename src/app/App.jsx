@@ -1,5 +1,5 @@
 import React from 'react';
-import AsyncComponent from '../util/AsyncComponent';
+import AsyncComponent from '../util/interface/AsyncComponent';
 import { Outlet, Link } from "react-router-dom";
 import { AppBar, Toolbar, Menu, MenuItem, IconButton, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -7,7 +7,8 @@ import './App.css';
 
 const appTitle = {
     flexGrow: 1,
-    textAlign: 'center'
+    textAlign: 'center',
+    marginRight: '3em'
 };
 
 export default class App extends AsyncComponent {
@@ -74,6 +75,15 @@ export default class App extends AsyncComponent {
                 to="/frozen-lake"
             > Frozen Lake
             </MenuItem>
+            <MenuItem
+                component={Link}
+                onClick={async () => {
+                    await this.setMainMenu(null);
+                    await this.setTitle('Tic Tac Toe');
+                }}
+                to="/tic-tac-toe"
+            > Tic Tac Toe
+            </MenuItem>
         </Menu>
     }
 
@@ -86,3 +96,14 @@ export default class App extends AsyncComponent {
         </div>
     }
 }
+
+const promise1 = new Promise(() => {
+    for (let i = 0; i < 1000; i ++) {}
+});
+
+const promise2 = new Promise(() => {
+    for (let i = 0; i < 100; i ++) {}
+});
+
+promise1.then(() => console.log('promise 1 complete'));
+promise2.then(() => console.log('promise 2 complete'));

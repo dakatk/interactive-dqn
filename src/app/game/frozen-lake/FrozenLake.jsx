@@ -1,11 +1,11 @@
 import * as tf from '@tensorflow/tfjs';
 import React from 'react';
 import { Action, Transition } from '../../../util/Step';
-import AsyncComponent from '../../../util/AsyncComponent';
+import GameComponent from '../interface/GameComponent';
 import Board from './board/Board';
 import './FrozenLake.css';
 
-export default class FrozenLake extends AsyncComponent {
+export default class FrozenLake extends GameComponent {
     board = Object.freeze([
         'S', 'F', 'F', 'F',
         'F', 'H', 'F', 'H',
@@ -19,9 +19,6 @@ export default class FrozenLake extends AsyncComponent {
         this.state = { location: 0 };
         this.prevAction = Action.RIGHT; 
     }
-
-    componentDidMount() {}
-    componentWillUnmount() {}
 
     async reset() {
         await this.setStateAsync({ location: 0 });

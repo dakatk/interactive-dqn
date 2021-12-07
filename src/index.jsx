@@ -5,6 +5,7 @@ import App from './app/App';
 import Game from './app/game/Game';
 import WelcomePage from './app/welcome-page/WelcomePage';
 import FrozenLake from './app/game/frozen-lake/FrozenLake';
+import TicTacToe from './app/game/tic-tac-toe/TicTacToe';
 import ParamsModel from './models/Params.json';
 import './index.css';
 
@@ -13,7 +14,9 @@ class Index extends React.Component {
         super(props);
 
         this.parentRoutes = ["/", "/app/", "/interactive-dqn/"];
+
         this.frozenLakeRef = React.createRef();
+        this.ticTacToeRef = React.createRef();
     }
 
     routingTree(homePath, index) {
@@ -23,6 +26,12 @@ class Index extends React.Component {
                 <Game
                     params={ParamsModel.frozenLake}
                     component={<FrozenLake ref={this.frozenLakeRef}/>}
+                />}
+            />
+            <Route path={homePath + '/tic-tac-toe'} element={
+                <Game
+                    params={ParamsModel.ticTacToe}
+                    component={<TicTacToe ref={this.ticTacToeRef}/>}
                 />}
             />
         </Route>
@@ -39,5 +48,5 @@ class Index extends React.Component {
     }
 }
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 ReactDOM.render(<Index />, rootElement);

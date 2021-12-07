@@ -1,5 +1,5 @@
 import React from "react";
-import AsyncComponent from "../../util/AsyncComponent";
+import AsyncComponent from "../../util/interface/AsyncComponent";
 import ControlsModel from './models/Controls.json';
 import './Controls.css';
 

@@ -5,5 +5,12 @@
         "layers": [
             {"units": 4, "inputShape": 16, "activation": "relu"}
         ]
+    },
+    "ticTacToe": {
+        "batchSize": 200,
+        "gamma": 0.9,
+        "layers": [
+            {"units": 9, "inputShape": 9, "activation": "relu"}
+        ]
     }
 }
