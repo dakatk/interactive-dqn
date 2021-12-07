@@ -14,41 +14,43 @@ class Index extends React.Component {
     constructor(props) {
         super(props);
 
-        this.parentRoutes = ['/', '/app/', '/interactive-dqn/'];
-
         this.frozenLakeRef = React.createRef();
         this.ticTacToeRef = React.createRef();
         this.snakeRef = React.createRef();
     }
 
+    childRoutes(homePath) {
+        const components = {
+            frozenLake: <FrozenLake ref={this.frozenLakeRef} />,
+            ticTacToe: <TicTacToe ref={this.ticTacToeRef} />,
+            snake: <Snake ref={this.snakeRef} />
+        };
+
+        const routes = [];
+        for (const [key, params] of Object.entries(ParamsModel)) {
+            routes.push(<Route 
+                key={key}
+                path={homePath + params.url} 
+                element={<Game
+                    params={params.dqnParams}
+                    component={components[key]}
+                />}
+            />);
+        }
+        return routes;
+    }
+
     routingTree(homePath, index) {
         return <Route exact path={homePath} element={<App />} key={index}>
             <Route path={homePath} element={<WelcomePage />} />
-            <Route path={homePath + '/frozen-lake'} element={
-                <Game
-                    params={ParamsModel.frozenLake}
-                    component={<FrozenLake ref={this.frozenLakeRef}/>}
-                />}
-            />
-            <Route path={homePath + '/tic-tac-toe'} element={
-                <Game
-                    params={ParamsModel.ticTacToe}
-                    component={<TicTacToe ref={this.ticTacToeRef}/>}
-                />}
-            />
-            <Route path={homePath + '/snake'} element={
-                <Game
-                    params={ParamsModel.snake}
-                    component={<Snake ref={this.snakeRef}/>}
-                />}
-            />
+            {this.childRoutes(homePath)}
         </Route>
     }
 
     render() {
         return <BrowserRouter>
             <Routes>
-                {this.parentRoutes.map((path, index) => 
+                {ParamsModel.parentRoutes.map((path, index) => 
                     this.routingTree(path, index)
                 )}
             </Routes>

@@ -1,23 +1,33 @@
 {
+    "parentRoutes": ["/", "/app/", "/interactive-dqn/"],
     "frozenLake": {
-        "batchSize": 1500,
-        "gamma": 0.9,
-        "layers": [
-            {"units": 4, "inputShape": 16, "activation": "relu"}
-        ]
+        "url": "/frozen-lake",
+        "dqnParams": {
+            "batchSize": 1500,
+            "gamma": 0.9,
+            "layers": [
+                {"units": 4, "inputShape": 16, "activation": "relu"}
+            ]
+        }
     },
     "ticTacToe": {
-        "batchSize": 200,
-        "gamma": 0.9,
-        "layers": [
-            {"units": 9, "inputShape": 9, "activation": "relu"}
-        ]
+        "url": "/tic-tac-toe",
+        "dqnParams": {
+            "batchSize": 200,
+            "gamma": 0.9,
+            "layers": [
+                {"units": 9, "inputShape": 9, "activation": "relu"}
+            ]
+        }
     },
     "snake": {
-        "batchSize": 2000,
-        "gamma": 0.9,
-        "layers": [
-            {"units": 4, "inputShape": 8, "activation": "relu"}
-        ]
+        "url": "/snake",
+        "dqnParams": {
+            "batchSize": 2000,
+            "gamma": 0.9,
+            "layers": [
+                {"units": 4, "inputShape": 8, "activation": "relu"}
+            ]
+        }
     }
 }

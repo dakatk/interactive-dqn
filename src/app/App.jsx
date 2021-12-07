@@ -3,12 +3,13 @@ import AsyncComponent from '../util/interface/AsyncComponent';
 import { Outlet, Link } from "react-router-dom";
 import { AppBar, Toolbar, Menu, MenuItem, IconButton, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import MenuModel from './Menu.json';
 import './App.css';
 
 const appTitle = {
     flexGrow: 1,
     textAlign: 'center',
-    marginRight: '3em'
+    marginRight: '2.5em'
 };
 
 export default class App extends AsyncComponent {
@@ -42,11 +43,28 @@ export default class App extends AsyncComponent {
                 >
                     <MenuIcon />
                 </IconButton>
-                <Typography variant="h6" component="div" sx={appTitle}>
+                <Typography variant="h5" component="div" sx={appTitle}>
                     {this.state.title}
                 </Typography>
             </Toolbar>
         </AppBar>
+    }
+
+    menuItems() {
+        const menuItems = [];
+        for (const [key, params] of Object.entries(MenuModel)) {
+            menuItems.push(<MenuItem
+                key={key}
+                component={Link}
+                onClick={async () => {
+                    await this.setMainMenu(null);
+                    await this.setTitle(params.title);
+                }}
+                to={params.route}
+            > {params.content}
+            </MenuItem>);
+        }
+        return menuItems;
     }
 
     mainMenu() {
@@ -56,43 +74,7 @@ export default class App extends AsyncComponent {
             anchorEl={this.state.mainMenu}
             onClose={async () => await this.setMainMenu(null)}
             disableAutoFocusItem
-        >
-            <MenuItem
-                component={Link}
-                onClick={async () => {
-                    await this.setMainMenu(null);
-                    await this.setTitle('Welcome');
-                }}
-                to="/"
-            > Home
-            </MenuItem>
-            <MenuItem
-                component={Link}
-                onClick={async () => {
-                    await this.setMainMenu(null);
-                    await this.setTitle('Frozen Lake');
-                }}
-                to="/frozen-lake"
-            > Frozen Lake
-            </MenuItem>
-            <MenuItem
-                component={Link}
-                onClick={async () => {
-                    await this.setMainMenu(null);
-                    await this.setTitle('Tic Tac Toe');
-                }}
-                to="/tic-tac-toe"
-            > Tic Tac Toe
-            </MenuItem>
-            <MenuItem
-                component={Link}
-                onClick={async () => {
-                    await this.setMainMenu(null);
-                    await this.setTitle('Snake');
-                }}
-                to="/snake"
-            > Snake
-            </MenuItem>
+        > {this.menuItems()}
         </Menu>
     }
 

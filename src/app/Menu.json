@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Welcome",
+        "route": "/",
+        "content": "Home"
+    },
+    {
+        "title": "Frozen Lake",
+        "route": "/frozen-lake",
+        "content": "Frozen Lake"
+    },
+    {
+        "title": "Tic Tac Toe",
+        "route": "/tic-tac-toe",
+        "content": "Tic Tac Toe"
+    },
+    {
+        "title": "Snake",
+        "route": "/snake",
+        "content": "Snake"
+    }
+]
