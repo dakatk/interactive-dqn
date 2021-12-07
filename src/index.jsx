@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from './app/App';
 import Game from './app/game/Game';
+import WelcomePage from './app/welcome-page/WelcomePage';
 import FrozenLake from './app/game/frozen-lake/FrozenLake';
 import ParamsModel from './models/Params.json';
 import './index.css';
@@ -10,20 +11,29 @@ import './index.css';
 class Index extends React.Component {
     constructor(props) {
         super(props);
+
+        this.parentRoutes = ["/", "/app/", "/interactive-dqn/"];
         this.frozenLakeRef = React.createRef();
+    }
+
+    routingTree(homePath, index) {
+        return <Route exact path={homePath} element={<App />} key={index}>
+            <Route path={homePath} element={<WelcomePage />} />
+            <Route path={homePath + '/frozen-lake'} element={
+                <Game
+                    params={ParamsModel.frozenLake}
+                    component={<FrozenLake ref={this.frozenLakeRef}/>}
+                />}
+            />
+        </Route>
     }
 
     render() {
         return <BrowserRouter>
             <Routes>
-                <Route exact path="/" element={<App />} />
-                <Route exact path="/interactive-dqn" element={<App />} />
-                <Route exact path="/frozen-lake" element={
-                    <Game
-                        params={ParamsModel.frozenLake}
-                        component={<FrozenLake ref={this.frozenLakeRef}/>}
-                    />}
-                />
+                {this.parentRoutes.map((path, index) => 
+                    this.routingTree(path, index)
+                )}
             </Routes>
         </BrowserRouter>
     }

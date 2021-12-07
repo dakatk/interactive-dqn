@@ -2,3 +2,8 @@
     border-bottom: solid 1px;
     padding-bottom: 1rem;
 }
+
+#app-title {
+    flex-grow: 1;
+    text-align: 'center';
+}
