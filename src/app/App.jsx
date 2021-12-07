@@ -84,6 +84,15 @@ export default class App extends AsyncComponent {
                 to="/tic-tac-toe"
             > Tic Tac Toe
             </MenuItem>
+            <MenuItem
+                component={Link}
+                onClick={async () => {
+                    await this.setMainMenu(null);
+                    await this.setTitle('Snake');
+                }}
+                to="/snake"
+            > Snake
+            </MenuItem>
         </Menu>
     }
 
@@ -96,14 +105,3 @@ export default class App extends AsyncComponent {
         </div>
     }
 }
-
-const promise1 = new Promise(() => {
-    for (let i = 0; i < 1000; i ++) {}
-});
-
-const promise2 = new Promise(() => {
-    for (let i = 0; i < 100; i ++) {}
-});
-
-promise1.then(() => console.log('promise 1 complete'));
-promise2.then(() => console.log('promise 2 complete'));

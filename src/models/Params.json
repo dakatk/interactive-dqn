@@ -12,5 +12,12 @@
         "layers": [
             {"units": 9, "inputShape": 9, "activation": "relu"}
         ]
+    },
+    "snake": {
+        "batchSize": 2000,
+        "gamma": 0.9,
+        "layers": [
+            {"units": 4, "inputShape": 8, "activation": "relu"}
+        ]
     }
 }
