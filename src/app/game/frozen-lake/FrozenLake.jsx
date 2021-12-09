@@ -1,6 +1,6 @@
-import * as tf from '@tensorflow/tfjs';
 import React from 'react';
-import { Action, Transition } from '../../../util/Step';
+import * as tf from '@tensorflow/tfjs';
+import { Action, Transition } from '../../../util/rl/Step';
 import GameComponent from '../interface/GameComponent';
 import Board from './board/Board';
 import './FrozenLake.css';
@@ -26,13 +26,13 @@ export default class FrozenLake extends GameComponent {
     }
 
     allowedActions() {
-        let opposite = this.prevAction.opposite();
-        let location = this.state.location;
+        const opposite = this.prevAction.opposite();
+        const location = this.state.location;
         
-        let stateX = location % 4;
-        let stateY = Math.floor(location / 4);
+        const stateX = location % 4;
+        const stateY = Math.floor(location / 4);
 
-        let allowedActions = [];
+        const allowedActions = [];
 
         if (stateX > 0 && opposite !== Action.LEFT) {
             allowedActions.push(Action.LEFT);
@@ -50,13 +50,13 @@ export default class FrozenLake extends GameComponent {
     }
 
     async step(action) {
-        let prevState = this.stateAsTensor();
-        let allowedActions = this.allowedActions();
+        const prevState = this.stateAsTensor();
+        const allowedActions = this.allowedActions();
 
         if (!allowedActions.includes(action)) {
             return new Transition(action, prevState, -1, true, prevState, allowedActions);
         }
-        let location = this.state.location;
+        const location = this.state.location;
         let stateX = location % 4;
         let stateY = Math.floor(location / 4);
 
@@ -87,7 +87,7 @@ export default class FrozenLake extends GameComponent {
     }
 
     reward() {
-        let location = this.state.location;
+        const location = this.state.location;
         switch (this.board[location]) {
             case 'G':
                 return 1;
@@ -101,19 +101,19 @@ export default class FrozenLake extends GameComponent {
     }
 
     done() {
-        let location = this.state.location;
-        let cell = this.board[location];
+        const location = this.state.location;
+        const cell = this.board[location];
         return cell === 'G' || cell === 'H';
     }
 
     stateAsTensor() {
-        let oneHot = [
+        const oneHot = [
             0, 0, 0, 0,
             0, 0, 0, 0,
             0, 0, 0, 0,
             0, 0, 0, 0
         ];
-        let location = this.state.location;
+        const location = this.state.location;
         oneHot[location] = 1;
         
         return tf.tensor2d([oneHot]);

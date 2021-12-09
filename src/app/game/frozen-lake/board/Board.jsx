@@ -4,7 +4,7 @@ import './Board.css';
 
 export default class Board extends React.Component {
     render() {
-        let cells = [];
+        const cells = [];
         for (const i in this.props.boardData) {
             const type = this.props.boardData[i];
             const index = parseInt(i);

@@ -1,7 +1,7 @@
 /*eslint eqeqeq: "off"*/
 
 import * as tf from '@tensorflow/tfjs';
-import { Action } from '../Step';
+import { Action } from './Step';
 
 export default class Dqn {
     constructor(bufferSize, gamma, layers) {
@@ -87,7 +87,7 @@ export default class Dqn {
         }
 
         const bufferSize = this.replayBuffer.length;
-        let miniBatch = new Set();
+        const miniBatch = new Set();
 
         while (miniBatch.size != batchSize) {
             const randomIndex = Math.floor(Math.random() * bufferSize);
