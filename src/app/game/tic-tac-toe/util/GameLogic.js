@@ -11,13 +11,33 @@ const WIN_CONDITIONS = [
     [[0, 2], [1, 1], [2, 0]]
 ]
 
-export class GameLogic {
+export default class GameLogic {
     constructor(board) {
         this.board = board || [
             [' ', ' ', ' '],
             [' ', ' ', ' '],
             [' ', ' ', ' ']
         ];
+    }
+
+    reset() {
+        this.board = [
+            [' ', ' ', ' '],
+            [' ', ' ', ' '],
+            [' ', ' ', ' ']
+        ];
+    }
+
+    legalMoves() {
+        const moves = [];
+        for (const [i, row] in Object.entries(this.board)) {
+            for (const [j, cell] in Object.entries(row)) {
+                if (cell === ' ') {
+                    moves.push([i, j]);
+                }
+            }
+        }
+        return moves;
     }
 
     isWinner(player) {

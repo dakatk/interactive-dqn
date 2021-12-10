@@ -1,6 +1,7 @@
 import React from 'react';
 import * as tf from '@tensorflow/tfjs';
-import { Action, Transition } from '../../../util/rl/Step';
+import Action from './util/Action';
+import Transition from '../../../util/rl/Transition';
 import GameComponent from '../interface/GameComponent';
 import Board from './board/Board';
 import './FrozenLake.css';
@@ -35,21 +36,23 @@ export default class FrozenLake extends GameComponent {
         const allowedActions = [];
 
         if (stateX > 0 && opposite !== Action.LEFT) {
-            allowedActions.push(Action.LEFT);
+            allowedActions.push(Action.LEFT.enumOrdinal);
         }
         if (stateX < 3 && opposite !== Action.RIGHT) {
-            allowedActions.push(Action.RIGHT);
+            allowedActions.push(Action.RIGHT.enumOrdinal);
         }
         if (stateY > 0 && opposite !== Action.UP) {
-            allowedActions.push(Action.UP);
+            allowedActions.push(Action.UP.enumOrdinal);
         }
         if (stateY < 3 && opposite !== Action.DOWN) {
-            allowedActions.push(Action.DOWN);
+            allowedActions.push(Action.DOWN.enumOrdinal);
         }
         return allowedActions;
     }
 
     async step(action) {
+        action = Action.fromOrdinal(action);
+        
         const prevState = this.stateAsTensor();
         const allowedActions = this.allowedActions();
 

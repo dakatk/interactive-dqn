@@ -1,17 +1,6 @@
 import { Enumify } from "enumify";
 
-class Transition {
-    constructor(action, state, reward, done, nextState, allowedActions) {
-        this.action = action;
-        this.state = state;
-        this.reward = reward;
-        this.done = done;
-        this.nextState = nextState;
-        this.allowedActions = allowedActions;
-    }
-}
-
-class Action extends Enumify {
+export default class Action extends Enumify {
     static UP = new Action();
     static DOWN = new Action();
     static LEFT = new Action();
@@ -36,21 +25,17 @@ class Action extends Enumify {
 
     static fromOrdinal(ordinal) {
         switch (ordinal) {
-            case 0:
+            case Action.UP.enumOrdinal:
                 return Action.UP;
-            case 1:
+            case Action.DOWN.enumOrdinal:
                 return Action.DOWN;
-            case 2:
+            case Action.LEFT.enumOrdinal:
                 return Action.LEFT;
-            case 3:
+            case Action.RIGHT.enumOrdinal:
                 return Action.RIGHT;
             default:
                 console.error(`Not an Action: ${ordinal}`);
                 break;
         }
     }
-}
-
-export {
-    Transition, Action
 }

@@ -1,7 +1,5 @@
 /*eslint eqeqeq: "off"*/
-
 import * as tf from '@tensorflow/tfjs';
-import { Action } from './Step';
 
 export default class Dqn {
     constructor(bufferSize, gamma, layers) {
@@ -58,7 +56,7 @@ export default class Dqn {
         const qValues = this.mainModel.predict(state);
         const argMax = await qValues.argMax(-1).dataSync();
 
-        return Action.fromOrdinal(argMax[0]);
+        return argMax[0];
     }
 
     async trainModel(batchSize) {
