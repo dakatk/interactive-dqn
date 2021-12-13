@@ -50,13 +50,12 @@ export default class FrozenLake extends GameComponent {
         return allowedActions;
     }
 
-    async step(action) {
-        action = Action.fromOrdinal(action);
-        
+    async step(actionOrdinal) {
+        const action = Action.fromOrdinal(actionOrdinal);
         const prevState = this.stateAsTensor();
         const allowedActions = this.allowedActions();
 
-        if (!allowedActions.includes(action)) {
+        if (!allowedActions.includes(actionOrdinal)) {
             return new Transition(action, prevState, -1, true, prevState, allowedActions);
         }
         const location = this.state.location;

@@ -1,10 +1,9 @@
-import AsyncComponent from '../../util/interface/AsyncComponent';
+import TrainingComponent from './util/TrainingComponent';
 import Controls from '../controls/Controls';
 import Counter from '../counter/Counter';
-import Trainer from '../../util/rl/Trainer';
 import './Game.css';
 
-export default class Game extends AsyncComponent {
+export default class Game extends TrainingComponent {
     constructor(props) {
         super(props);
 
@@ -19,15 +18,14 @@ export default class Game extends AsyncComponent {
     }
 
     componentDidMount() {
-        const params = this.props.params;
-        this.game = this.props.component.ref.current;
-        this.trainer = new Trainer(params.bufferSize, params.gamma, params.layers);
+        const gameComponent = this.props.component;
+        this.game = gameComponent.ref.current;
     }
 
     async onPlay(controlState) {
         switch (controlState.mode) {
             case 'step':
-                await this.trainer.singleStep(this,
+                await this.singleStep(
                     controlState.epsilon, 
                     controlState.updateTarget, 
                     controlState.batchSize
@@ -35,7 +33,7 @@ export default class Game extends AsyncComponent {
                 break;
 
             case 'episode':
-                await this.trainer.singleEpisode(this,
+                await this.singleEpisode(
                     controlState.maxSteps, 
                     controlState.epsilon, 
                     controlState.batchSize,
@@ -44,7 +42,7 @@ export default class Game extends AsyncComponent {
                 break;
 
             case 'train':
-                await this.trainer.fullyTrain(this,
+                await this.fullyTrain(
                     controlState.episodes, 
                     controlState.maxSteps, 
                     controlState.batchSize, 
@@ -65,7 +63,7 @@ export default class Game extends AsyncComponent {
             currentEpisode: 0 
         });
         await this.game.reset();
-        this.trainer.reset();
+        this.reset();
     }
 
     async onModeSelect(mode) {
