@@ -20,6 +20,9 @@ export default class GameLogic {
         ];
     }
 
+    /**
+     * 
+     */
     reset() {
         this.board = [
             [' ', ' ', ' '],
@@ -28,6 +31,9 @@ export default class GameLogic {
         ];
     }
 
+    /**
+     * 
+     */
     legalMoves() {
         const moves = [];
         for (const [i, row] in Object.entries(this.board)) {
@@ -40,6 +46,11 @@ export default class GameLogic {
         return moves;
     }
 
+    /**
+     * 
+     * @param {*} player 
+     * @returns 
+     */
     isWinner(player) {
         for (const winCondition of WIN_CONDITIONS) {
             const winCells = winCondition.map(value => {
@@ -55,12 +66,21 @@ export default class GameLogic {
         return false;
     }
 
+    /**
+     * 
+     * @param {*} move 
+     * @param {*} player 
+     */
     makeMove(move, player) {
         const row = move[0];
         const col = move[1];
         this.board[row][col] = player;
     }
 
+    /**
+     * 
+     * @returns 
+     */
     clone() {
         return new GameLogic([
             [...this.board[0]],

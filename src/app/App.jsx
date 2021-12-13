@@ -1,5 +1,5 @@
 import React from 'react';
-import AsyncComponent from '../util/interface/AsyncComponent';
+import AsyncComponent from '../util/AsyncComponent';
 import { Outlet, Link } from "react-router-dom";
 import { AppBar, Toolbar, Menu, MenuItem, IconButton, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';

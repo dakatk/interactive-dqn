@@ -10,6 +10,13 @@ class Node {
     }
 }
 
+/**
+ * 
+ * @param {*} game 
+ * @param {*} player1 
+ * @param {*} player2 
+ * @returns 
+ */
 export default function bestMove(game, player1, player2) {
     const head = new Node(undefined, 0);
     generateTree(game, head, player1, player2);

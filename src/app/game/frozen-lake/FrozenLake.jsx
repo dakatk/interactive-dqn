@@ -7,6 +7,10 @@ import Board from './board/Board';
 import './FrozenLake.css';
 
 export default class FrozenLake extends GameComponent {
+    /**
+     * Corresponding character values
+     * displayed in each of the board's cells
+     */
     board = Object.freeze([
         'S', 'F', 'F', 'F',
         'F', 'H', 'F', 'H',
@@ -88,6 +92,10 @@ export default class FrozenLake extends GameComponent {
         return new Transition(action, prevState, this.reward(), this.done(), this.stateAsTensor(), allowedActions);
     }
 
+    /**
+     * @returns Reward value the actor recieves
+     * after moving to the current cell
+     */
     reward() {
         const location = this.state.location;
         switch (this.board[location]) {
@@ -102,6 +110,10 @@ export default class FrozenLake extends GameComponent {
         }
     }
 
+    /**
+     * @returns 'true' if the actor has hit 
+     * a 'goal' or 'hole' cell, false otherwise
+     */
     done() {
         const location = this.state.location;
         const cell = this.board[location];

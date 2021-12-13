@@ -22,6 +22,10 @@ export default class Game extends TrainingComponent {
         this.game = gameComponent.ref.current;
     }
 
+    /**
+     * 
+     * @param {*} controlState 
+     */
     async onPlay(controlState) {
         switch (controlState.mode) {
             case 'step':
@@ -57,6 +61,9 @@ export default class Game extends TrainingComponent {
         }
     }
 
+    /**
+     * 
+     */
     async onReset() {
         await this.setStateAsync({ 
             currentStep: 0, 
@@ -66,6 +73,10 @@ export default class Game extends TrainingComponent {
         this.reset();
     }
 
+    /**
+     * 
+     * @param {*} mode 
+     */
     async onModeSelect(mode) {
         await this.setStateAsync({ 
             currentStep: 0, 

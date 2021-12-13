@@ -9,6 +9,9 @@ export default class Dqn {
         this.reset();
     }
 
+    /**
+     * 
+     */
     reset() {
         this.mainModel = tf.sequential();
         for (const layer of this.layers) {
@@ -24,6 +27,12 @@ export default class Dqn {
         this.replayBuffer = [];
     }
 
+    /**
+     * 
+     * @param {*} game 
+     * @param {*} epsilon 
+     * @returns 
+     */
     async step(game, epsilon) {
         const state = game.stateAsTensor();
         const action = await this.epsilonGreedy(state, game.allowedActions(), epsilon);
@@ -33,6 +42,9 @@ export default class Dqn {
         return transition;
     }
 
+    /**
+     * 
+     */
     updateTargetModel() {
         for (const i in this.mainModel.layers) {
             const weights = this.mainModel.layers[i].getWeights();
@@ -40,6 +52,10 @@ export default class Dqn {
         }
     }
 
+    /**
+     * 
+     * @param {*} transition 
+     */
     storeTransition(transition) {
         this.replayBuffer.unshift(transition);
 
@@ -48,6 +64,13 @@ export default class Dqn {
         }
     }
 
+    /**
+     * 
+     * @param {*} state 
+     * @param {*} actionSpace 
+     * @param {*} epsilon 
+     * @returns 
+     */
     async epsilonGreedy(state, actionSpace, epsilon) {
         if (Math.random() < epsilon) {
             const randIndex = Math.floor(Math.random() * actionSpace.length);
@@ -59,6 +82,11 @@ export default class Dqn {
         return argMax[0];
     }
 
+    /**
+     * 
+     * @param {*} batchSize 
+     * @returns 
+     */
     async trainModel(batchSize) {
         if (this.replayBuffer.length < batchSize) {
             return;
@@ -77,6 +105,11 @@ export default class Dqn {
         }
     }
 
+    /**
+     * 
+     * @param {*} batchSize 
+     * @returns 
+     */
     miniBatch(batchSize) {
         if (batchSize >= this.replayBuffer.length) {
             let clonedBuffer = [...this.replayBuffer];
@@ -94,6 +127,11 @@ export default class Dqn {
         return miniBatch;
     }
 
+    /**
+     * 
+     * @param {*} nextState 
+     * @returns 
+     */
     async targetValue(nextState) {
         const mainPred = this.mainModel.predict(nextState);
         const targetPred = this.targetModel.predict(nextState);
