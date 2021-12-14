@@ -2,6 +2,10 @@ import React from 'react';
 import './Counter.css';
 
 export default class Counter extends React.Component {
+    /**
+     * @returns JSX element displaying the value 
+     * of the current step in the current episode
+     */
     showCurrentStep() {
         const mode = this.props.mode;
         if (mode === 'episode' || mode === 'train') {
@@ -9,6 +13,10 @@ export default class Counter extends React.Component {
         }
     }
 
+    /**
+     * @returns JSX element displaying the value 
+     * of the current episode
+     */
     showCurrentEpisode() {
         if (this.props.mode === 'train') {
             return <h3 id="counter-episode">Episode: {this.props.episode}</h3>

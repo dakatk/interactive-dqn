@@ -21,14 +21,18 @@ export default class App extends AsyncComponent {
         }
     }
 
+    /**
+     * 
+     * @param {*} target 
+     */
     async setMainMenu(target) {
         await this.setStateAsync({mainMenu: target})
     }
 
-    async setTitle(title) {
-        await this.setStateAsync({title});
-    }
-
+    /**
+     * 
+     * @returns 
+     */
     menuBar() {
         return <AppBar position="static">
             <Toolbar>
@@ -44,22 +48,23 @@ export default class App extends AsyncComponent {
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h5" component="div" sx={appTitle}>
-                    {this.state.title}
+                    {this.props.title}
                 </Typography>
             </Toolbar>
         </AppBar>
     }
 
+    /**
+     * 
+     * @returns 
+     */
     menuItems() {
         const menuItems = [];
         for (const [key, params] of Object.entries(MenuModel)) {
             menuItems.push(<MenuItem
                 key={key}
                 component={Link}
-                onClick={async () => {
-                    await this.setMainMenu(null);
-                    await this.setTitle(params.title);
-                }}
+                onClick={async () => await this.setMainMenu(null)}
                 to={params.route}
             > {params.content}
             </MenuItem>);
@@ -67,6 +72,10 @@ export default class App extends AsyncComponent {
         return menuItems;
     }
 
+    /**
+     * 
+     * @returns 
+     */
     mainMenu() {
         return <Menu
             id="main-menu"

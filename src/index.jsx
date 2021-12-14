@@ -14,16 +14,45 @@ class Index extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            appTitle: 'Welcome'
+        };
         this.frozenLakeRef = React.createRef();
         this.ticTacToeRef = React.createRef();
         this.snakeRef = React.createRef();
     }
 
+    /**
+     * 
+     * @param {*} type 
+     * @param {*} otherProps 
+     * @returns 
+     */
+    createTitledElement(type, otherProps) {
+        return React.createElement(type, {
+            ...(otherProps || {}),
+            setAppTitle: (title) => this.setAppTitle(title)
+        });
+    }
+
+    /**
+     * 
+     * @param {string} appTitle 
+     */
+    setAppTitle(appTitle) {
+        this.setState({appTitle})
+    }
+
+    /**
+     * 
+     * @param {*} homePath 
+     * @returns 
+     */
     childRoutes(homePath) {
         const components = {
-            frozenLake: <FrozenLake ref={this.frozenLakeRef} />,
-            ticTacToe: <TicTacToe ref={this.ticTacToeRef} />,
-            snake: <Snake ref={this.snakeRef} />
+            frozenLake: this.createTitledElement(FrozenLake, {ref: this.frozenLakeRef}),
+            ticTacToe: this.createTitledElement(TicTacToe, {ref: this.ticTacToeRef}),
+            snake: this.createTitledElement(Snake, {ref: this.snakeRef})
         };
 
         const routes = [];
@@ -40,9 +69,15 @@ class Index extends React.Component {
         return routes;
     }
 
+    /**
+     * 
+     * @param {*} homePath 
+     * @param {*} index 
+     * @returns 
+     */
     routingTree(homePath, index) {
-        return <Route exact path={homePath} element={<App />} key={index}>
-            <Route path={homePath} element={<WelcomePage />} />
+        return <Route exact path={homePath} element={<App title={this.state.appTitle}/>} key={index}>
+            <Route path={homePath} element={this.createTitledElement(WelcomePage)} />
             {this.childRoutes(homePath)}
         </Route>
     }

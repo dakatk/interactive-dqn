@@ -3,7 +3,11 @@ import Cell from './cell/Cell';
 import './Board.css';
 
 export default class Board extends React.Component {
-    render() {
+    /**
+     * @returns Array of JSX elements representing the 
+     * Frozen Lake's game board
+     */
+    boardCells() {
         const cells = [];
         for (const i in this.props.boardData) {
             const type = this.props.boardData[i];
@@ -15,8 +19,12 @@ export default class Board extends React.Component {
                 cells.push(<br key={`${i}-br`} />)
             }
         }
+        return cells;
+    }
+
+    render() {
         return <div id="board-grid">
-            {cells}
+            {this.boardCells()}
         </div>
     }
 }

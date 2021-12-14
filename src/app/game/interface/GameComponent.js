@@ -1,6 +1,14 @@
 import AsyncComponent from "../../../util/AsyncComponent";
 
 export default class GameComponent extends AsyncComponent {
+    constructor(props, appTitle) {
+        super(props);
+        this.appTitle = appTitle;
+    }
+
+    componentDidMount() {
+        this.props.setAppTitle(this.appTitle);
+    }
     /**
      * Set game to intial state
      */

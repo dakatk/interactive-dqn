@@ -25,6 +25,9 @@ export default class Controls extends AsyncComponent {
         this.handleResetButtonPress = this.handleResetButtonPress.bind(this);
     }
 
+    /**
+     * @param {Event} e 
+     */
     async handleInputChange(e) {
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
