@@ -1,11 +1,7 @@
 import GameComponent from '../interface/GameComponent';
 import './Snake.css';
 
-export default class Snake extends GameComponent {
-    constructor(props) {
-        super(props, 'Snake');
-    }
-    
+export default class Snake extends GameComponent {    
     render() {
         return <div id="snake">
             <h1>Snake</h1>

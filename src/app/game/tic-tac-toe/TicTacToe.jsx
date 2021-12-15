@@ -6,7 +6,7 @@ import './TicTacToe.css';
 
 export default class TicTacToe extends GameComponent {
     constructor(props) {
-        super(props, 'Tic-Tac-Toe');
+        super(props);
         
         this.game = new GameLogic();
         this.state = {

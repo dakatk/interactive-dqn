@@ -48,7 +48,7 @@ export default class GameLogic {
 
     /**
      * 
-     * @param {*} player 
+     * @param {string} player 
      * @returns 
      */
     isWinner(player) {
@@ -68,8 +68,8 @@ export default class GameLogic {
 
     /**
      * 
-     * @param {*} move 
-     * @param {*} player 
+     * @param {Array<number>} move 
+     * @param {string} player 
      */
     makeMove(move, player) {
         const row = move[0];
@@ -78,8 +78,7 @@ export default class GameLogic {
     }
 
     /**
-     * 
-     * @returns 
+     * @returns New GameLogic instance with the same board values
      */
     clone() {
         return new GameLogic([

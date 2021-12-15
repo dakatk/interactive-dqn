@@ -19,7 +19,7 @@ export default class FrozenLake extends GameComponent {
     ]);
 
     constructor(props) {
-        super(props, 'Frozen Lake');
+        super(props);
 
         this.state = { location: 0 };
         this.prevAction = Action.RIGHT; 
