@@ -26,6 +26,8 @@ export default class TicTacToe extends GameComponent {
 
     async step(action) {
         console.log(action);
+        // First turn: Minimax (as X's, will be variable later)
+        // Second turn: Dqn
     }
 
     stateAsTensor() {
@@ -33,14 +35,14 @@ export default class TicTacToe extends GameComponent {
             .concat(this.game.board[1])
             .concat(this.game.board[2]);
 
-            const numericValues = {
-                ' ': 0,
-                'X': 1,
-                'O': 2
-            };
-            return tf.tensor2d([
-                flattened.map(value => numericValues[value])
-            ]);
+        const numericValues = {
+            ' ': 0,
+            'X': 1,
+            'O': 2
+        };
+        return tf.tensor2d([
+            flattened.map(value => numericValues[value])
+        ]);
     }
 
     render() {

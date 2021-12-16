@@ -8,17 +8,15 @@ export default class Board extends AsyncComponent {
         for (const [i, row] of Object.entries(this.props.cells)) {
             for (const [j, cell] of Object.entries(row)) {
                 const index = i * 3 + parseInt(j);
-                divCells.push(<div id={`block_${index}`} class="block">{cell}</div>);
+                divCells.push(<div id={`board-cell-${index}`} class="board-cell">{cell}</div>);
             }
         }
         return divCells;
     }
 
     render() {
-        return <div class="container">
-            <div class="play-area">
+        return <div id="board-grid">
                 {this.createCells()}
             </div>
-        </div>
     }
 }

@@ -6,7 +6,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MenuModel from './menu.json';
 import './app.css';
 
-const appTitle = {
+const appTitleSx = {
     flexGrow: 1,
     textAlign: 'center',
     marginRight: '2.5em'
@@ -47,7 +47,7 @@ export default class App extends AsyncComponent {
                 >
                     <MenuIcon />
                 </IconButton>
-                <Typography variant="h5" component="div" sx={appTitle}>
+                <Typography variant="h5" component="div" sx={appTitleSx}>
                     {this.props.title}
                 </Typography>
             </Toolbar>
