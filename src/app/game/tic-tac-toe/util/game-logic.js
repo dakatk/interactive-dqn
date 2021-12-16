@@ -21,7 +21,7 @@ export default class GameLogic {
     }
 
     /**
-     * 
+     * Game is reset to inital state
      */
     reset() {
         this.board = [
@@ -32,7 +32,8 @@ export default class GameLogic {
     }
 
     /**
-     * 
+     * @returns Array of all legal moves for the current 
+     * board state in the form [row, col] 
      */
     legalMoves() {
         const moves = [];
@@ -47,9 +48,8 @@ export default class GameLogic {
     }
 
     /**
-     * 
      * @param {string} player 
-     * @returns 
+     * @returns 'true' if the given player has won, 'false' otherwise
      */
     isWinner(player) {
         for (const winCondition of WIN_CONDITIONS) {
@@ -67,8 +67,7 @@ export default class GameLogic {
     }
 
     /**
-     * 
-     * @param {Array<number>} move 
+     * @param {Array<number>} move [row, col] coordinates of player's move
      * @param {string} player 
      */
     makeMove(move, player) {

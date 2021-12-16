@@ -1,7 +1,7 @@
 import React from "react";
-import AsyncComponent from "../../util/AsyncComponent";
-import ControlsModel from './models/Controls.json';
-import './Controls.css';
+import AsyncComponent from "../../util/async-component";
+import ControlsModel from './controls.model.json';
+import './controls.css';
 
 export default class Controls extends AsyncComponent {
     constructor(props) {

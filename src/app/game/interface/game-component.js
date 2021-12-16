@@ -1,4 +1,4 @@
-import AsyncComponent from "../../../util/AsyncComponent";
+import AsyncComponent from "../../../util/async-component";
 
 export default class GameComponent extends AsyncComponent {
     /**

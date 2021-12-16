@@ -1,10 +1,10 @@
 import React from 'react';
-import AsyncComponent from '../util/AsyncComponent';
+import AsyncComponent from '../util/async-component';
 import { Outlet, Link } from "react-router-dom";
 import { AppBar, Toolbar, Menu, MenuItem, IconButton, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import MenuModel from './Menu.json';
-import './App.css';
+import MenuModel from './menu.json';
+import './app.css';
 
 const appTitle = {
     flexGrow: 1,

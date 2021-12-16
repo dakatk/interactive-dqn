@@ -1,8 +1,9 @@
-import GameComponent from '../interface/GameComponent';
-import GameLogic from './util/GameLogic';
-import Board from './board/Board';
+import GameComponent from '../interface/game-component';
+import GameLogic from './util/game-logic';
+// import bestMove from './util/minimax';
+import Board from './board/board';
 import * as tf from '@tensorflow/tfjs';
-import './TicTacToe.css';
+import './tic-tac-toe.css';
 
 export default class TicTacToe extends GameComponent {
     constructor(props) {

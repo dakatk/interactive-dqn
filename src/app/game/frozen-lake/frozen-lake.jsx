@@ -1,10 +1,10 @@
 import React from 'react';
 import * as tf from '@tensorflow/tfjs';
-import Action from './util/Action';
-import Transition from '../../../util/rl/Transition';
-import GameComponent from '../interface/GameComponent';
-import Board from './board/Board';
-import './FrozenLake.css';
+import Action from './util/action';
+import Transition from '../../../util/rl/transition';
+import GameComponent from '../interface/game-component';
+import Board from './board/board';
+import './frozen-lake.css';
 
 export default class FrozenLake extends GameComponent {
     /**

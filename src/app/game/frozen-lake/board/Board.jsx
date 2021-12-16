@@ -1,6 +1,6 @@
 import React from 'react';
-import Cell from './cell/Cell';
-import './Board.css';
+import Cell from './cell/cell';
+import './board.css';
 
 export default class Board extends React.Component {
     /**

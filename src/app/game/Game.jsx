@@ -1,7 +1,7 @@
-import TrainingComponent from './util/TrainingComponent';
-import Controls from '../controls/Controls';
-import Counter from '../counter/Counter';
-import './Game.css';
+import TrainingComponent from './util/training-component';
+import Controls from '../controls/controls';
+import Counter from '../counter/counter';
+import './game.css';
 
 export default class Game extends TrainingComponent {
     constructor(props) {

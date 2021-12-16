@@ -1,5 +1,5 @@
-import GameComponent from '../interface/GameComponent';
-import './Snake.css';
+import GameComponent from '../interface/game-component';
+import './snake.css';
 
 export default class Snake extends GameComponent {    
     render() {

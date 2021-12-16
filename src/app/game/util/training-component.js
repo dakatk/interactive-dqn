@@ -1,5 +1,5 @@
-import AsyncComponent from "../../../util/AsyncComponent";
-import Dqn from "../../../util/rl/Dqn";
+import AsyncComponent from "../../../util/async-component";
+import Dqn from "../../../util/rl/dqn";
 
 export default class TrainingComponent extends AsyncComponent {
     constructor(props) {

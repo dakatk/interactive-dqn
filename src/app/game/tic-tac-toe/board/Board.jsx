@@ -1,10 +1,9 @@
 import React from 'react';
-import './Board.css';
+import './board.css';
 
 export default class Board extends React.Component {
     createCells() {
         const divCells = [];
-        console.log(this.props.cells);
         for (const [i, row] of Object.entries(this.props.cells)) {
             for (const [j, cell] of Object.entries(row)) {
                 const index = i * 3 + parseInt(j);

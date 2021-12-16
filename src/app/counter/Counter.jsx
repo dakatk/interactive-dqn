@@ -1,7 +1,8 @@
 import React from 'react';
-import './Counter.css';
+import AsyncComponent from '../../util/async-component';
+import './counter.css';
 
-export default class Counter extends React.Component {
+export default class Counter extends AsyncComponent {
     /**
      * @returns JSX element displaying the value 
      * of the current step in the current episode
