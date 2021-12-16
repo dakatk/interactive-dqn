@@ -1,4 +1,4 @@
-#board-grid {
+.board-play-area {
     display: grid;
     width: 300px;
     height: 300px;
@@ -14,31 +14,30 @@
     font-size: 3rem;
     font-weight: bold;
     border: 3px solid black;
-    transition: background 0.2s ease-in-out;
 }
 
-#board-cell-0,
-#board-cell-1,
-#board-cell-2 {
-  border-top: none;
+#board-cell_0,
+#board-cell_1,
+#board-cell_2 {
+  border-top: none !important;
 }
 
-#board-cell-0,
-#board-cell-3,
-#board-cell-6 {
-  border-left: none;
+#board-cell_0,
+#board-cell_3,
+#board-cell_6 {
+  border-left: none !important;
 }
 
-#board-cell-6,
-#board-cell-7,
-#board-cell-8 {
-  border-bottom: none;
+#board-cell_6,
+#board-cell_7,
+#board-cell_8 {
+  border-bottom: none !important;
 }
 
-#board-cell-2,
-#board-cell-5,
-#board-cell-8 {
-  border-right: none;
+#board-cell_2,
+#board-cell_5,
+#board-cell_8 {
+  border-right: none !important;
 }
 
   

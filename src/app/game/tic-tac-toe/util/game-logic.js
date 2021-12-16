@@ -1,3 +1,5 @@
+import Piece from './piece';
+
 const WIN_CONDITIONS = [
     [[0, 0], [0, 1], [0, 2]],
     [[1, 0], [1, 1], [1, 2]],
@@ -13,22 +15,22 @@ const WIN_CONDITIONS = [
 
 export default class GameLogic {
     constructor(board) {
-        this.board = board || [
-            [' ', ' ', ' '],
-            [' ', ' ', ' '],
-            [' ', ' ', ' ']
-        ];
+        this.reset(board);
     }
 
     /**
-     * Game is reset to inital state
+     * Game is reset to given state, or to the default 
+     * initial state if no state given
+     * 
+     * @param {Array<Array<Piece>>?} board 
      */
-    reset() {
-        this.board = [
-            [' ', ' ', ' '],
-            [' ', ' ', ' '],
-            [' ', ' ', ' ']
+    reset(board) {
+        this.board = board || [
+            [Piece.SPACE, Piece.SPACE, Piece.SPACE],
+            [Piece.SPACE, Piece.SPACE, Piece.SPACE],
+            [Piece.SPACE, Piece.SPACE, Piece.SPACE]
         ];
+        return this.board;
     }
 
     /**
@@ -39,7 +41,7 @@ export default class GameLogic {
         const moves = [];
         for (const [i, row] in Object.entries(this.board)) {
             for (const [j, cell] in Object.entries(row)) {
-                if (cell === ' ') {
+                if (cell === Piece.SPACE) {
                     moves.push([i, j]);
                 }
             }
@@ -48,7 +50,7 @@ export default class GameLogic {
     }
 
     /**
-     * @param {string} player 
+     * @param {Piece} player 
      * @returns 'true' if the given player has won, 'false' otherwise
      */
     isWinner(player) {
@@ -68,7 +70,7 @@ export default class GameLogic {
 
     /**
      * @param {Array<number>} move [row, col] coordinates of player's move
-     * @param {string} player 
+     * @param {Piece} player 
      */
     makeMove(move, player) {
         const row = move[0];

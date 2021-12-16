@@ -16,8 +16,9 @@ export default class TicTacToe extends GameComponent {
     }
 
     async reset() {
-        this.game.reset();
-        await this.setStateAsync({ cells: this.game.board });
+        await this.setStateAsync({ 
+            cells: this.game.reset() 
+        });
     }
 
     allowedActions() {
