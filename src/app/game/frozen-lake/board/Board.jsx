@@ -1,8 +1,9 @@
 import React from 'react';
+import AsyncComponent from '../../../../util/async-component';
 import Cell from './cell/cell';
 import './board.css';
 
-export default class Board extends React.Component {
+export default class Board extends AsyncComponent {
     /**
      * @returns Array of JSX elements representing the 
      * Frozen Lake's game board

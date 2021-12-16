@@ -1,7 +1,8 @@
 import React from 'react';
+import AsyncComponent from '../../../../util/async-component';
 import './board.css';
 
-export default class Board extends React.Component {
+export default class Board extends AsyncComponent {
     createCells() {
         const divCells = [];
         for (const [i, row] of Object.entries(this.props.cells)) {
